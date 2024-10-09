@@ -1,0 +1,36 @@
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import React from "react";
+import { Button } from "../ui/button";
+import Link from "next/link";
+import Image from "next/image";
+import { NavBar } from "./NavBar";
+
+const Header = () => {
+  return (
+    <header className="w-full border-b">
+      <div className="wrapper flex items-center justify-between">
+        <Link href="/" className="w-36">
+          <Image
+            src="/assets/images/logo.svg"
+            width={128}
+            height={38}
+            alt="Eventure Logo"
+          />
+        </Link>
+        <div className="flex w-32 justify-end gap-3">
+          <SignedOut>
+            <Button asChild className="rounded-full">
+              <Link href="/sign-in">Login</Link>
+            </Button>
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+            <NavBar/>
+          </SignedIn>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default Header;

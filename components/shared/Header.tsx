@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { NavBar } from "./NavBar";
+import { NavMenu } from "./NavMenu";
 
 const Header = () => {
   return (
@@ -25,7 +25,7 @@ const Header = () => {
           </SignedOut>
           <SignedIn>
             <UserButton />
-            <NavBar/>
+            <NavMenu/>
           </SignedIn>
         </div>
       </div>

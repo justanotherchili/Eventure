@@ -1,6 +1,6 @@
 // ====== USER PARAMS
 export type CreateUserParams = {
-  clerkId: string
+  clerkId: string | undefined // Allow `undefined`
   firstName: string | null
   lastName: string | null
   username: string

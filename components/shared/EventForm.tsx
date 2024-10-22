@@ -22,6 +22,7 @@ import { useState } from "react";
 import Image from "next/image";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Checkbox } from "../ui/checkbox";
 
 type EventFormProps = {
   userId: string;
@@ -179,7 +180,7 @@ const EventForm = ({ userId, type }: EventFormProps) => {
               </FormItem>
             )}
           />
-     
+
           <FormField
             control={form.control}
             name="endDateTime"
@@ -213,7 +214,87 @@ const EventForm = ({ userId, type }: EventFormProps) => {
             )}
           />
         </div>
-        <Button type="submit">Submit</Button>
+
+        <FormField
+          control={form.control}
+          name="price"
+          render={({ field }) => (
+            <FormItem className="w-full">
+              <FormControl>
+                <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
+                  <Image
+                    src="/assets/icons/pound.svg"
+                    alt="price icon"
+                    width={24}
+                    height={24}
+                    className="filter-grey"
+                  />
+                  <Input
+                    type="number"
+                    placeholder="Price"
+                    {...field}
+                    className="p-regular-16 border-0 bg-gray-50 outline-offset-0 focus:border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                  />
+                  <FormField
+                    control={form.control}
+                    name="isFree"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <div className="flex items-center">
+                            <label
+                              htmlFor="isFree"
+                              className="whitespace-nowrap pr-3 leading-non peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                              Free
+                            </label>
+                            <Checkbox
+                              id="isFree"
+                              className="mr-2 h-5 w-5 border-2 border-primary-500"
+                            />
+                          </div>
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </FormControl>
+
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="url"
+          render={({ field }) => (
+            <FormItem className="w-full">
+              <FormControl>
+                <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
+                  <Image
+                    src="/assets/icons/link.svg"
+                    alt="URL icon"
+                    width={24}
+                    height={24}
+                  />
+                  <Input placeholder="URL" {...field} className="input-field" />
+                </div>
+              </FormControl>
+
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button
+          type="submit"
+          disabled={form.formState.isSubmitting}
+          className="button"
+        >
+          {form.formState.isSubmitting ? "Please wait..." : `${type} Event`}
+        </Button>
       </form>
     </Form>
   );

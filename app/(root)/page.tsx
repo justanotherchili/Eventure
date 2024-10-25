@@ -1,17 +1,22 @@
+import CategoryFilter from "@/components/shared/CategoryFilter";
 import Collection from "@/components/shared/EventsCollection";
+import Search from "@/components/shared/Search";
 import { Button } from "@/components/ui/button";
 import { getAllEvents } from "@/lib/actions/event.actions";
+import { SearchParamProps } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function Home() {
+export default async function Home({searchParams}:SearchParamProps) {
+  const pageNumber = Number(searchParams?.page) || 1;
+  const searchText = (searchParams?.query as string) || ""
+  const category = (searchParams?.category as string) || ""
   const events = await getAllEvents({
-    query: "",
-    category: "",
-    page:1,
-    limit:6
+    query: searchText,
+    category: category,
+    page: pageNumber,
+    limit: 6
   })
-  console.log(events)
   return (
     <>
       <section className="bg-primary-50 bg-dotted-pattern bg-contain py-5 md:py-10">
@@ -35,7 +40,10 @@ export default async function Home() {
         className="wrapper my-8 flex flex-col gap-8 md:gap-12"
       >
         <h2 className="h2-bold">Events</h2>
-        <div>Search Category filter</div>
+        <div>
+          <Search/> 
+          <CategoryFilter/>
+        </div>
         <Collection
           data={events?.data}
           emptyTitle="No events found"

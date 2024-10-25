@@ -1,5 +1,5 @@
 
-import EventsCollection from '@/components/shared/EventsCollection'
+import EventsCollection from '@/components/EventsCollection'
 import { Button } from '@/components/ui/button'
 import { getEventsByUser } from '@/lib/actions/event.actions'
 import { getOrdersByUser } from '@/lib/actions/order.actions'

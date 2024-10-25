@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import Category, { ICategory } from "@/lib/database/models/category.model";
 import { startTransition, useEffect, useState } from "react";
-import { Input } from "../ui/input";
+import { Input } from "./ui/input";
 import { createCategory, getAllCategories } from "@/lib/actions/category.actions";
 
 type DropdownMenuProps = {

@@ -1,7 +1,7 @@
-import CategoryFilter from "@/components/shared/CategoryFilter";
-import EventsCollection from "@/components/shared/EventsCollection";
+import CategoryFilter from "@/components/CategoryFilter";
+import EventsCollection from "@/components/EventsCollection";
 
-import Search from "@/components/shared/Search";
+import Search from "@/components/Search";
 import { Button } from "@/components/ui/button";
 import { getAllEvents } from "@/lib/actions/event.actions";
 import { SearchParamProps } from "@/types";

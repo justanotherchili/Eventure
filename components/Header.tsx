@@ -1,6 +1,6 @@
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import React from "react";
-import { Button } from "../ui/button";
+import { Button } from "./ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { NavMenu } from "./NavMenu";
@@ -9,11 +9,11 @@ const Header = () => {
   return (
     <header className="w-full border-b">
       <div className="wrapper flex items-center justify-between">
-        <Link href="/" className="w-36">
+        <Link href="/" className="w-100">
           <Image
             src="/assets/images/logo.svg"
-            width={128}
-            height={38}
+            width={150}
+            height={150}
             alt="Eventure Logo"
           />
         </Link>

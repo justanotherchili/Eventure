@@ -1,5 +1,6 @@
 import CategoryFilter from "@/components/shared/CategoryFilter";
-import Collection from "@/components/shared/EventsCollection";
+import EventsCollection from "@/components/shared/EventsCollection";
+
 import Search from "@/components/shared/Search";
 import { Button } from "@/components/ui/button";
 import { getAllEvents } from "@/lib/actions/event.actions";
@@ -44,14 +45,14 @@ export default async function Home({searchParams}:SearchParamProps) {
           <Search/> 
           <CategoryFilter/>
         </div>
-        <Collection
+        <EventsCollection
           data={events?.data}
           emptyTitle="No events found"
           emptyStateSubtext="Come back later"
           collectionType="All_Events"
           limit={6}
-          page={1}
-          totalPages={2}
+          page={pageNumber}
+          totalPages={events?.totalPages}
         />
       </section>
     </>

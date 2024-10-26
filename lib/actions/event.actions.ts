@@ -80,7 +80,7 @@ export async function updateEvent({ userId, event, path }: UpdateEventParams) {
 }
 
 
-export async function deleteEvent({ eventId, path }: DeleteEventParams) {
+export async function deleteEventById({ eventId, path }: DeleteEventParams) {
   try {
     await connectToDatabase()
 

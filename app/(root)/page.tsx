@@ -42,7 +42,6 @@ export default async function Home({searchParams}:SearchParamProps) {
       >
         <h2 className="h2-bold">Events</h2>
         <div>
-          <Search/> 
           <CategoryFilter/>
         </div>
         <EventsCollection

@@ -47,8 +47,6 @@ export async function POST(req: Request) {
 
   if (eventType === 'user.created') {
     const { email_addresses, image_url, first_name, last_name, username } = evt.data;
-
-    // Safely handle email_addresses array
     const email = email_addresses.length > 0 ? email_addresses[0].email_address : null;
     if (!email) {
       return NextResponse.json({ message: 'No email found for user' }, { status: 400 });
@@ -57,7 +55,7 @@ export async function POST(req: Request) {
     const user = {
       clerkId: id,
       email: email,
-      username: username ?? 'anonymous', // Safely handle username
+      username: username ?? 'anonymous',
       firstName: first_name,
       lastName: last_name,
       photo: image_url,

@@ -1,6 +1,6 @@
-// ====== USER PARAMS
+
 export type CreateUserParams = {
-  clerkId: string | undefined // Allow `undefined`
+  clerkId: string | undefined
   firstName: string | null
   lastName: string | null
   username: string
@@ -15,7 +15,7 @@ export type UpdateUserParams = {
   photo: string
 }
 
-// ====== EVENT PARAMS
+
 export type CreateEventParams = {
   userId: string
   event: {
@@ -98,12 +98,11 @@ export type Event = {
   }
 }
 
-// ====== CATEGORY PARAMS
 export type CreateCategoryParams = {
   categoryName: string
 }
 
-// ====== ORDER PARAMS
+
 export type CheckoutOrderParams = {
   eventTitle: string
   eventId: string
@@ -131,7 +130,6 @@ export type GetOrdersByUserParams = {
   page: string | number | null
 }
 
-// ====== URL QUERY PARAMS
 export type UrlQueryParams = {
   params: string
   key: string

@@ -6,16 +6,18 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { DeleteConfirmation } from './DeleteConfirmation'
+import { getUserById } from '@/lib/actions/user.actions'
 
 type CardProps = {
   event: IEvent,
   hasOrderLink?: boolean,
-  hidePrice?: boolean
+  hasTicket?: boolean
 }
 
-const EventsCard = ({ event, hasOrderLink, hidePrice }: CardProps) => {
+const EventsCard = ({ event, hasOrderLink, hasTicket }: CardProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
+  const userData = getUserById(userId)
 
   const isEventCreator = userId === event.organizer._id.toString();
 
@@ -28,7 +30,7 @@ const EventsCard = ({ event, hasOrderLink, hidePrice }: CardProps) => {
       />
 
 
-      {isEventCreator && !hidePrice && (
+      {isEventCreator && !hasTicket && (
         <div className="absolute right-2 top-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
           <Link href={`/events/${event._id}/update`}>
             <Image src="/assets/icons/edit.svg" alt="modify event button" width={20} height={20} />
@@ -41,7 +43,7 @@ const EventsCard = ({ event, hasOrderLink, hidePrice }: CardProps) => {
       <div
         className="flex min-h-[230px] flex-col gap-3 p-5 md:gap-4"
       > 
-       {!hidePrice && <div className="flex gap-2">
+       {!hasTicket && <div className="flex gap-2">
           <span className="p-semibold-14 w-min rounded-full bg-green-100 px-4 py-1 text-green-60">
             {event.isFree ? 'FREE' : `£${event.price}`}
           </span>

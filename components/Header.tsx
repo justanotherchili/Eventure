@@ -21,17 +21,16 @@ const Header = () => {
           />
         </Link>
 
-        {/* Flex container for Search and Category Filter */}
+
         <div className="flex-grow flex items-center mx-10 space-x-4">
-          <div className="flex-1 max-w-2xl"> {/* Set max width for search */}
+          <div className="flex-1 max-w-2xl">
             <Search />
           </div>
-          <div className="flex-none w-1/3"> {/* Set width for category filter */}
+          <div className="flex-none w-1/3">
             <CategoryFilter />
           </div>
         </div>
 
-        {/* User Authentication Section */}
         <div className="flex items-center gap-3">
           <SignedOut>
             <Button asChild className="rounded-full">

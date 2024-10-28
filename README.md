@@ -1,36 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Eventure - Event Management and Sharing App
+
+Eventure is a community-driven event management platform that allows businesses to share their events with a broader audience, enabling community members to discover, sign up, and participate in events of interest. Whether free or paid, Eventure provides a seamless experience for attendees, while offering event organizers tools to manage event details and track registrations.
+
+## Tech Stack
+
+- **Node.js**
+- **Next.js**
+- **TypeScript**
+- **TailwindCSS**
+- **Stripe** - for payment processing
+- **Zod** - schema validation
+- **React Hook Form** - form handling
+- **Shadcn** - component library
+- **Uploadthing** - media upload functionality
+
+## Features
+
+- **User Authentication with Clerk (CRUD):**  
+  Users can register quickly and securely using their email or by linking their Google accounts. Additional social media login options are easily configurable with Clerk.
+
+- **Event Management (CRUD):**  
+  Full control over event management with the ability to create, view, edit, and remove events.
+
+- **Related Events Suggestions:**  
+  When viewing an event, users can see a list of similar events based on category, enhancing discovery and engagement.
+
+- **User-Created Events Display:**  
+  Events created by a user are organized in their profile, making it easy to manage.
+
+- **Real-Time Search & Filter:**  
+  A responsive search and filter feature that updates results with each keystroke, enabling users to quickly and effortlessly find events matching their preferences.
+
+- **Flexible Category Management:**  
+  Easily add and manage event categories, keeping the platform adaptable to diverse event types.
+
+- **Secure Payments via Stripe:**  
+  Integrated Stripe payment processing offers users a smooth, secure checkout experience for paid events.
+
+- **Order Management for Events:**  
+  Provides a detailed view of all event-related transactions, helping organizers and users track their orders efficiently.
+
+- **Order Search Functionality:**  
+  Quickly locate and manage specific orders with a streamlined search tool, simplifying order tracking.
+
+- **Google Calendar Integration:**  
+  Users can effortlessly add events to their Google Calendar, helping them stay organized and track event attendance.
 
 ## Getting Started
 
-First, run the development server:
+Follow these steps to set up the project locally on your machine.
+
+**Prerequisites**
+
+Make sure you have the following installed on your machine:
+
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/en)
+- [npm](https://www.npmjs.com/) (Node Package Manager)
+
+**Cloning the Repository**
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/justanotherchili/eventure.git
+cd ./eventure
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Installation**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Install the project dependencies using npm:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+```
 
-## Learn More
+**Set Up Environment Variables**
 
-To learn more about Next.js, take a look at the following resources:
+Create a new file named `.env` in the root of your project and add the following content:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```env
+#NEXT
+NEXT_PUBLIC_SERVER_URL=
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+#CLERK
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+NEXT_CLERK_WEBHOOK_SECRET=
 
-## Deploy on Vercel
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#MONGODB
+MONGODB_URI=
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#UPLOADTHING
+UPLOADTHING_SECRET=
+UPLOADTHING_APP_ID=
+
+#STRIPE
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
+```
+
+Replace the placeholder values with your actual credentials 
+
+**Running the Project**
+
+```bash
+npm start
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the project.

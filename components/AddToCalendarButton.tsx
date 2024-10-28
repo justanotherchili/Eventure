@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -22,15 +21,13 @@ const AddToCalendarButton = ({
   eventLocation,
 }: AddToCalendarButtonProps) => {
   const handleAddToCalendar = async () => {
-    const durationInMinutes = Math.round(
-      (endTime.getTime() - startTime.getTime()) / 60000
-    );
+ 
 
     try {
       await createCalendarEvent({
         clerkUserId,
         startTime,
-        durationInMinutes,
+        endTime,
         eventName,
         eventLocation,
       });

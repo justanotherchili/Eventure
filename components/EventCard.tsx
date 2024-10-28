@@ -7,6 +7,7 @@ import Link from 'next/link'
 import React from 'react'
 import { DeleteConfirmation } from './DeleteConfirmation'
 import { getUserById } from '@/lib/actions/user.actions'
+import AddToCalendarButton from './AddToCalendarButton'
 
 type CardProps = {
   event: IEvent,
@@ -14,10 +15,12 @@ type CardProps = {
   hasTicket?: boolean
 }
 
-const EventsCard = ({ event, hasOrderLink, hasTicket }: CardProps) => {
+const EventsCard = async ({ event, hasOrderLink, hasTicket }: CardProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
-  const userData = getUserById(userId)
+  const userData = await getUserById(userId)
+  // console.log(event)
+  // console.log(userData)
 
   const isEventCreator = userId === event.organizer._id.toString();
 
@@ -50,8 +53,9 @@ const EventsCard = ({ event, hasOrderLink, hasTicket }: CardProps) => {
           <p className="p-semibold-14 w-min rounded-full bg-grey-500/10 px-4 py-1 text-grey-500 line-clamp-1">
             {event.category.name}
           </p>
-        </div>}
-
+        </div>
+        }
+        <AddToCalendarButton clerkUserId={userData.clerkId} email={userData.email} startTime={event.startDateTime} endTime={event.endDateTime} eventName={event.title} eventLocation={event.location}/>
         <p className="p-medium-16 p-medium-18 text-grey-500">
           {formatDateTime(event.startDateTime).dateTime}
         </p>

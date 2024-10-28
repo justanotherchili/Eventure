@@ -1,8 +1,58 @@
+// "use client";
+
+// import React from "react";
+// import { Button } from "./ui/button";
+// import { createCalendarEvent } from "@/lib/googleCalendar";
+
+// type AddToCalendarButtonProps = {
+//   clerkUserId: string;
+//   email: string;
+//   startTime: Date;
+//   endTime: Date;
+//   eventName: string;
+//   eventLocation: string;
+// };
+
+// const AddToCalendarButton = ({
+//   clerkUserId,
+//   startTime,
+//   endTime,
+//   eventName,
+//   eventLocation,
+// }: AddToCalendarButtonProps) => {
+//   const handleAddToCalendar = async () => {
+
+//     try {
+//       await createCalendarEvent({
+//         clerkUserId,
+//         startTime,
+//         endTime,
+//         eventName,
+//         eventLocation,
+//       });
+
+//       alert("Event added to calendar!");
+//     } catch (error) {
+//       console.error("Error adding event to calendar", error);
+//       alert("Error adding event to calendar");
+//     }
+//   };
+
+//   return (
+//     <Button
+//       onClick={handleAddToCalendar}
+//       className="mt-4 p-2 bg-blue-500 text-white rounded-md"
+//     >
+//       Add to Calendar
+//     </Button>
+//   );
+// };
+
+// export default AddToCalendarButton;
 "use client";
 
 import React from "react";
 import { Button } from "./ui/button";
-import { createCalendarEvent } from "@/lib/googleCalendar";
 
 type AddToCalendarButtonProps = {
   clerkUserId: string;
@@ -20,23 +70,19 @@ const AddToCalendarButton = ({
   eventName,
   eventLocation,
 }: AddToCalendarButtonProps) => {
-  const handleAddToCalendar = async () => {
- 
+  const handleAddToCalendar = () => {
+    const startTimeFormatted = startTime
+      .toISOString()
+      .replace(/-|:|\.\d{3}/g, "");
+    const endTimeFormatted = endTime.toISOString().replace(/-|:|\.\d{3}/g, "");
 
-    try {
-      await createCalendarEvent({
-        clerkUserId,
-        startTime,
-        endTime,
-        eventName,
-        eventLocation,
-      });
+    const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+      eventName
+    )}&dates=${startTimeFormatted}/${endTimeFormatted}&location=${encodeURIComponent(
+      eventLocation
+    )}`;
 
-      alert("Event added to calendar!");
-    } catch (error) {
-      console.error("Error adding event to calendar", error);
-      alert("Error adding event to calendar");
-    }
+    window.open(calendarUrl, "_blank");
   };
 
   return (

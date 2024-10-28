@@ -5,7 +5,7 @@ export const eventFormSchema = z.object({
   description: z
     .string()
     .min(3, "Description must be at least 3 characters")
-    .max(400, "Description must be less than 400 characters"),
+    .max(3000, "Description must be less than 2000 characters"),
   location: z
     .string()
     .nonempty("Please add a location"),
@@ -15,5 +15,4 @@ export const eventFormSchema = z.object({
   categoryId: z.string().nonempty("Category must be selected"),
   price: z.string(),
   isFree: z.boolean(),
-  url: z.string().url(),
 });

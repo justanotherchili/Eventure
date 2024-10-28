@@ -6,25 +6,21 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { DeleteConfirmation } from "./DeleteConfirmation";
-import { getUserById } from "@/lib/actions/user.actions";
 import AddToCalendarButton from "./AddToCalendarButton";
 
 type CardProps = {
   event: IEvent;
   hasOrderLink?: boolean;
-  hasTicket?: boolean;
+  hidePrice?: boolean;
 };
 
-const EventsCard = async ({ event, hasOrderLink, hasTicket }: CardProps) => {
+const EventsCard = ({ event, hasOrderLink, hidePrice }: CardProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
-  // if (userId) {
-  //   const userData = await getUserById(userId);
-  // }
-  // console.log(event)
-  // console.log(userData)
 
   const isEventCreator = userId === event.organizer._id.toString();
+  console.log('huh')
+  console.log(event.description)
 
   return (
     <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[438px]">
@@ -34,7 +30,7 @@ const EventsCard = async ({ event, hasOrderLink, hasTicket }: CardProps) => {
         className="flex-center flex-grow bg-gray-50 bg-cover bg-center text-grey-500"
       />
 
-      {isEventCreator && !hasTicket && (
+      {isEventCreator && !hidePrice && (
         <div className="absolute right-2 top-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
           <Link href={`/events/${event._id}/update`}>
             <Image
@@ -50,7 +46,7 @@ const EventsCard = async ({ event, hasOrderLink, hasTicket }: CardProps) => {
       )}
 
       <div className="flex min-h-[230px] flex-col gap-3 p-5 md:gap-4">
-        {!hasTicket && (
+        {!hidePrice && (
           <div className="flex gap-2">
             <span className="p-semibold-14 w-min rounded-full bg-green-100 px-4 py-1 text-green-60">
               {event.isFree ? "FREE" : `£${event.price}`}
@@ -60,13 +56,11 @@ const EventsCard = async ({ event, hasOrderLink, hasTicket }: CardProps) => {
             </p>
           </div>
         )}
+
         <p className="p-medium-16 p-medium-18 text-grey-500">
           {formatDateTime(event.startDateTime).dateTime}
         </p>
-        {/* {userId &&(
 
-        <AddToCalendarButton clerkUserId={userData.clerkId} email={userData.email} startTime={event.startDateTime} endTime={event.endDateTime} eventName={event.title} eventLocation={event.location}/>
-        )} */}
         <Link href={`/events/${event._id}`}>
           <p className="p-medium-16 md:p-medium-20 line-clamp-2 flex-1 text-black">
             {event.title}
@@ -77,6 +71,8 @@ const EventsCard = async ({ event, hasOrderLink, hasTicket }: CardProps) => {
           <p className="p-medium-14 md:p-medium-16 text-grey-600">
             {event.organizer.firstName} {event.organizer.lastName}
           </p>
+
+          <AddToCalendarButton startTime={new Date(event.startDateTime)} endTime={new Date(event.endDateTime)} eventName={event.title} location={event.location} description={event.description}/>
 
           {hasOrderLink && (
             <Link href={`/orders?eventId=${event._id}`} className="flex gap-2">

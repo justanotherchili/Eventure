@@ -1,11 +1,7 @@
-import CategoryFilter from "@/components/CategoryFilter";
 import EventsCollection from "@/components/EventsCollection";
-
-import Search from "@/components/Search";
 import { Button } from "@/components/ui/button";
 import { getAllEvents } from "@/lib/actions/event.actions";
 import { SearchParamProps } from "@/types";
-import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home({searchParams}:SearchParamProps) {
@@ -42,7 +38,7 @@ export default async function Home({searchParams}:SearchParamProps) {
       >
         <h2 className="h2-bold">Events</h2>
         <div>
-          <CategoryFilter/>
+  
         </div>
         <EventsCollection
           data={events?.data}

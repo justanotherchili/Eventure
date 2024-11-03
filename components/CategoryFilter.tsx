@@ -1,17 +1,19 @@
-"use client"
+"use client";
 
+import React, { useEffect, useState } from "react";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import Image from "next/image";
+import { Separator } from "@/components/ui/separator";
 import { getAllCategories } from "@/lib/actions/category.actions";
 import { ICategory } from "@/lib/database/models/category.model";
 import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
 
 const CategoryFilter = () => {
   const [categories, setCategories] = useState<ICategory[]>([]);
@@ -21,48 +23,72 @@ const CategoryFilter = () => {
   useEffect(() => {
     const getCategories = async () => {
       const categoryList = await getAllCategories();
-
-      categoryList && setCategories(categoryList as ICategory[])
-    }
+      if (categoryList) {
+        setCategories(categoryList as ICategory[]);
+      }
+    };
 
     getCategories();
-  }, [])
+  }, []);
 
   const onSelectCategory = (category: string) => {
-      let newUrl = '';
+    let newUrl = "";
 
-      if(category && category !== 'All') {
-        newUrl = formUrlQuery({
-          params: searchParams.toString(),
-          key: 'category',
-          value: category
-        })
-      } else {
-        newUrl = removeKeysFromQuery({
-          params: searchParams.toString(),
-          keysToRemove: ['category']
-        })
-      }
+    if (category && category !== "All") {
+      newUrl = formUrlQuery({
+        params: searchParams.toString(),
+        key: "category",
+        value: category,
+      });
+    } else {
+      newUrl = removeKeysFromQuery({
+        params: searchParams.toString(),
+        keysToRemove: ["category"],
+      });
+    }
 
-      router.push(newUrl, { scroll: false });
-  }
+    router.push(newUrl, { scroll: false });
+  };
 
   return (
-    <Select onValueChange={(value: string) => onSelectCategory(value)}>
-      <SelectTrigger className="select-field">
-        <SelectValue placeholder="Category" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="All" className="select-item p-regular-14">All</SelectItem>
+    <nav>
+      <Sheet>
+        <SheetTrigger className="align-middle">
+          <Image
+            src="/assets/icons/categories.svg"
+            width={32}
+            height={32}
+            className="cursor-pointer"
+            alt="Menu button"
+          />
+        </SheetTrigger>
+        <SheetContent side="left" className="flex flex-col gap-6 bg-white">
+          <SheetHeader>
+            <SheetTitle>Categories</SheetTitle>
+          </SheetHeader>
 
-        {categories.map((category) => (
-          <SelectItem value={category.name} key={category._id} className="select-item p-regular-14">
-            {category.name}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
-  )
-}
+          <Separator className="border border-black-50" />
+          <div className="flex flex-col gap-4">
+            <button
+              onClick={() => onSelectCategory("All")}
+              className="select-item p-regular-14"
+            >
+              All
+            </button>
+            {categories.map((category) => (
+              <button
+                key={category._id}
+                onClick={() => onSelectCategory(category.name)}
+                className="select-item p-regular-14"
+              >
+                {category.name}
+              </button>
+            ))}
+          </div>
+        </SheetContent>
+      </Sheet>
+    </nav>
+  );
+};
 
-export default CategoryFilter
+export default CategoryFilter;

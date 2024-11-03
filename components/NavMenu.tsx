@@ -2,9 +2,6 @@ import React from "react";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Image from "next/image";
@@ -19,8 +16,8 @@ export const NavMenu = () => {
         <SheetTrigger className="align-middle">
           <Image 
           src = "/assets/icons/menu.svg"
-          width={24}
-          height={24}
+          width={32}
+          height={32}
           className="cursor-pointer"
           alt="Menu button"
           />

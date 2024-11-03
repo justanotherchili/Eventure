@@ -23,7 +23,6 @@ const Header = () => {
 
         <div className="flex-grow flex items-center mx-4 md:mx-10 space-x-2 md:space-x-4">
           <CategoryFilter />
-
           <Search />
         </div>
 

@@ -59,7 +59,7 @@ const CategoryFilter = () => {
             width={32}
             height={32}
             className="cursor-pointer"
-            alt="Menu button"
+            alt="Category button"
           />
         </SheetTrigger>
         <SheetContent side="left" className="flex flex-col gap-6 bg-white">

@@ -30,10 +30,10 @@ module.exports = withUt({
         },
 
         grey: {
-          600: '#545454', // Subdued - color name in figma
+          600: '#545454', 
           500: '#757575',
-          400: '#AFAFAF', // Disabled - color name in figma
-          50: '#F6F6F6', // White Grey - color name in figma
+          400: '#AFAFAF', 
+          50: '#F6F6F6',
         },
         black: '#000000',
         white: '#FFFFFF',
@@ -70,6 +70,7 @@ module.exports = withUt({
         poppins: ['var(--font-poppins)'],
       },
       backgroundImage: {
+        'scenery': "url('/assets/images/london-skyline.jpeg')",
         'dotted-pattern': "url('/assets/images/dotted-pattern.png')",
         'hero-img': "url('/assets/images/hero.png')",
       },

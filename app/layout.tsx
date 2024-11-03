@@ -1,34 +1,31 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { ClerkProvider, SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import { Montserrat } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
-import { Button } from "@/components/ui/button";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+// Load the Montserrat font with specified weights and subsets
+const montserrat = Montserrat({
+  weight: ["400", "600"], // Specify the font weights you want to use
+  subsets: ["latin"], // You can specify subsets, 'latin' is common
 });
 
 export const metadata: Metadata = {
   title: "Eventure",
   description: "Events Management",
-
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <ClerkProvider afterSignOutUrl="/">
       <html lang="en">
-        <body>
+        <body className={montserrat.className}>
           <main>{children}</main>
         </body>
       </html>
     </ClerkProvider>
-  )
+  );
 }

@@ -11,7 +11,6 @@ const Header = () => {
   return (
     <header className="sticky top-0 w-full border-b bg-white z-10">
       <div className="wrapper flex items-center justify-between p-4 max-w-screen-xl mx-auto">
-
         <Link href="/" className="flex-shrink-0">
           <Image
             src="/assets/images/logo.svg"
@@ -23,17 +22,17 @@ const Header = () => {
         </Link>
 
         <div className="flex-grow flex items-center mx-4 md:mx-10 space-x-2 md:space-x-4">
-          <div className="flex-1 max-w-xs md:max-w-2xl">
-            <Search />
-          </div>
-          <div className="hidden md:block flex-none w-1/3">
-            <CategoryFilter />
-          </div>
+          <CategoryFilter />
+
+          <Search />
         </div>
 
         <div className="flex items-center gap-2 md:gap-3">
           <SignedOut>
-            <Button asChild className="rounded-full px-3 py-1 text-sm md:text-base">
+            <Button
+              asChild
+              className="rounded-full px-3 py-1 text-sm md:text-base"
+            >
               <Link href="/sign-in">Login</Link>
             </Button>
           </SignedOut>

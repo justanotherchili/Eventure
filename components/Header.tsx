@@ -28,12 +28,16 @@ const Header = () => {
 
         <div className="flex items-center gap-2 md:gap-3">
           <SignedOut>
-            <Button
-              asChild
-              className="rounded-full px-3 py-1 text-sm md:text-base"
-            >
-              <Link href="/sign-in">Login</Link>
-            </Button>
+            
+              <Link href="/sign-in">
+                <Image
+                  src="/assets/icons/profile.svg"
+                  width={32}
+                  height={32}
+                  alt="Profile"
+                />
+              </Link>
+         
           </SignedOut>
           <SignedIn>
             <UserButton />

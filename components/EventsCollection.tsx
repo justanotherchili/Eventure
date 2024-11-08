@@ -11,7 +11,7 @@ type EventsCollectionProps = {
   page: number | string,
   totalPages?: number,
   urlParamName?: string,
-  collectionType?: 'Events_Organized' | 'My_Tickets' | 'All_Events'
+  collectionType: 'Events_Organized' | 'My_Tickets' | 'All_Events'
 }
 const EventsCollection = ({data, emptyTitle, emptyStateSubtext, page, totalPages = 0, collectionType, urlParamName}: EventsCollectionProps) => {
   return (
@@ -25,7 +25,7 @@ const EventsCollection = ({data, emptyTitle, emptyStateSubtext, page, totalPages
 
               return (
                 <li key={event._id} className="flex justify-center">
-                  <EventsCard event={event} hasOrderLink={hasOrderLink} hidePrice={hidePrice} />
+                  <EventsCard event={event} hasOrderLink={hasOrderLink} hidePrice={hidePrice} collectionType={collectionType}/>
                 </li>
               )
             })}

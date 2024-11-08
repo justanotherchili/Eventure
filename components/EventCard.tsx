@@ -12,15 +12,21 @@ type CardProps = {
   event: IEvent;
   hasOrderLink?: boolean;
   hidePrice?: boolean;
+  collectionType: string;
 };
 
-const EventsCard = ({ event, hasOrderLink, hidePrice }: CardProps) => {
+const EventsCard = ({
+  event,
+  hasOrderLink,
+  hidePrice,
+  collectionType,
+}: CardProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
 
   const isEventCreator = userId === event.organizer._id.toString();
-  console.log('huh')
-  console.log(event.description)
+  console.log("huh");
+  console.log(event.description);
 
   return (
     <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[438px]">
@@ -29,7 +35,17 @@ const EventsCard = ({ event, hasOrderLink, hidePrice }: CardProps) => {
         style={{ backgroundImage: `url(${event.imageUrl})` }}
         className="flex-center flex-grow bg-gray-50 bg-cover bg-center text-grey-500"
       />
-
+      {collectionType === "My_Tickets" && (
+        <div className="absolute right-2 top-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
+        <AddToCalendarButton
+          startTime={new Date(event.startDateTime)}
+          endTime={new Date(event.endDateTime)}
+          eventName={event.title}
+          location={event.location}
+          description={event.description}
+        />
+        </div>
+      )}
       {isEventCreator && !hidePrice && (
         <div className="absolute right-2 top-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all">
           <Link href={`/events/${event._id}/update`}>
@@ -71,8 +87,6 @@ const EventsCard = ({ event, hasOrderLink, hidePrice }: CardProps) => {
           <p className="p-medium-14 md:p-medium-16 text-grey-600">
             {event.organizer.firstName} {event.organizer.lastName}
           </p>
-
-          <AddToCalendarButton startTime={new Date(event.startDateTime)} endTime={new Date(event.endDateTime)} eventName={event.title} location={event.location} description={event.description}/>
 
           {hasOrderLink && (
             <Link href={`/orders?eventId=${event._id}`} className="flex gap-2">

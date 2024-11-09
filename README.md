@@ -9,11 +9,11 @@ Sign up is quick and secure through **Clerk**. Want to explore different perspec
 
 #### Organizer View
 - **Username:** `testorganizer`
-- **Password:** `Test12345%`
+- **Password:** `12345%test`
 
 #### User View
 - **Username:** `testuser`
-- **Password:** `Test12345%`
+- **Password:** `12345%test`
 
 Dive into Eventure and experience a streamlined way to connect communities with memorable events!
 

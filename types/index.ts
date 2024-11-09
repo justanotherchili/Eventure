@@ -1,6 +1,6 @@
 
 export type CreateUserParams = {
-  clerkId: string | undefined
+  clerkId: string
   firstName: string | null
   lastName: string | null
   username: string

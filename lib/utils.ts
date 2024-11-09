@@ -64,7 +64,7 @@ export function formUrlQuery({ params, key, value }: UrlQueryParams) {
 
   return qs.stringifyUrl(
     {
-      url: "/",
+      url: "",
       query: currentUrl,
     },
     { skipNull: true }

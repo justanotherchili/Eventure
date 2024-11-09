@@ -8,7 +8,7 @@ export const navLinks = [
     route: '/events/create',
   },
   {
-    label: 'My Profile',
+    label: 'My Events',
     route: '/profile',
   },
 ]

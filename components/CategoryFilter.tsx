@@ -32,21 +32,12 @@ const CategoryFilter = () => {
   }, []);
 
   const onSelectCategory = (category: string) => {
-    let newUrl = "";
-
+    let newUrl = "/";
+  
     if (category && category !== "All") {
-      newUrl = formUrlQuery({
-        params: searchParams.toString(),
-        key: "category",
-        value: category,
-      });
-    } else {
-      newUrl = removeKeysFromQuery({
-        params: searchParams.toString(),
-        keysToRemove: ["category"],
-      });
+      newUrl += `?category=${category}`;
     }
-
+  
     router.push(newUrl, { scroll: false });
   };
 

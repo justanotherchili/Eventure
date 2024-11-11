@@ -61,7 +61,7 @@ Dive into Eventure and experience a streamlined way to connect communities with 
 - **Google Calendar Integration:**  
   Users can effortlessly add events to their Google Calendar, helping them stay organized and track event attendance.
 
-## Getting Started
+## Running it locally
 
 Follow these steps to set up the project locally on your machine.
 

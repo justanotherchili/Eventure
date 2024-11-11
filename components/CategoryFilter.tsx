@@ -44,7 +44,8 @@ const CategoryFilter = () => {
   return (
     <nav>
       <Sheet>
-        <SheetTrigger className="align-middle">
+        <SheetTrigger className="align-middle flex items-center">
+          
           <Image
             src="/assets/icons/categories.svg"
             width={32}
@@ -52,6 +53,7 @@ const CategoryFilter = () => {
             className="cursor-pointer"
             alt="Category button"
           />
+          <span className="hidden md:block ml-2">Categories</span>
         </SheetTrigger>
         <SheetContent side="left" className="flex flex-col gap-6 bg-white">
           <SheetHeader>
